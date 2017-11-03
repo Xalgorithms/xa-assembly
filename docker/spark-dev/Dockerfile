@@ -30,7 +30,8 @@ COPY ${SPARK_PKG_NAME}.tgz .
 RUN tar -v -xf ${SPARK_PKG_NAME}.tgz && \
     ln -s ${SPARK_PKG_NAME} spark &&    \
     rm ${SPARK_PKG_NAME}.tgz && \
-    cp spark/conf/log4j.properties.template spark/conf/log4j.properties
+    cp spark/conf/log4j.properties.template spark/conf/log4j.properties && \
+    chown -R root:root $SPARK_HOME
 
 USER root
 WORKDIR /root
