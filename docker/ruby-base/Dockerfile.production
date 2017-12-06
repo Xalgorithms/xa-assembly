@@ -1,6 +1,6 @@
 FROM ruby:2.4.2-alpine
 
-RUN apk --no-cache add cmake make gcc g++ libc-dev linux-headers
+RUN apk --no-cache add cmake make gcc g++ libc-dev linux-headers git
 
 ONBUILD RUN bundle config --global frozen 1
 
@@ -16,4 +16,4 @@ ONBUILD COPY . /app
 
 # we need to remove the build tools in the child image, otherwise
 # bundle install will fail
-ONBUILD RUN apk del cmake make gcc g++ libc-dev linux-headers
+ONBUILD RUN apk del cmake make gcc g++ libc-dev linux-headers git
