@@ -40,5 +40,14 @@ c.Authenticator.admin_users = {'karfai'}
 # with ~/assignments/Welcome.ipynb as the default landing page
 # this config could also be put in
 # /etc/jupyter/jupyter_notebook_config.py
-c.Spawner.notebook_dir = '~/assignments'
-c.Spawner.args = ['--NotebookApp.default_url=/notebooks/Welcome.ipynb']
+#c.Spawner.notebook_dir = '/notebooks/'
+#c.Spawner.args = ['--NotebookApp.default_url=/notebooks/Welcome.ipynb']
+
+c.DockerSpawner.use_internal_ip = True
+
+# The docker instances need access to the Hub, so the default loopback port doesn't work:
+from jupyter_client.localinterfaces import public_ips
+c.JupyterHub.hub_ip = public_ips()[0]
+c.JupyterHub.port = 8000
+
+c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
