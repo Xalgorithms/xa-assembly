@@ -4,7 +4,7 @@ VERSION=`cat .version`
 ENVIRONMENTS="development"
 
 for en in $ENVIRONMENTS; do
-    docker build --no-cache --squash -t "xalgorithms/jupyterhub-live:latest-$en" -t "xalgorithms/jupyterhub-live:$VERSION-$en" -f "Dockerfile.$en" .
+    docker build --squash -t "xalgorithms/jupyterhub-live:latest-$en" -t "xalgorithms/jupyterhub-live:$VERSION-$en" -f "Dockerfile.$en" .
     docker push "xalgorithms/jupyterhub-live:latest-$en"
     docker push "xalgorithms/jupyterhub-live:$VERSION-$en"
 done
