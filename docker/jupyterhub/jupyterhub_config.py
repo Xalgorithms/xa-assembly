@@ -44,6 +44,9 @@ c.Authenticator.admin_users = {'karfai'}
 #c.Spawner.args = ['--NotebookApp.default_url=/notebooks/Welcome.ipynb']
 
 c.DockerSpawner.use_internal_ip = True
+network_name = os.getenv('DOCKER_SPAWNER_NETWORK_NAME')
+if network_name:
+    c.DockerSpawner.network_name = network_name
 
 # The docker instances need access to the Hub, so the default loopback port doesn't work:
 from jupyter_client.localinterfaces import public_ips
